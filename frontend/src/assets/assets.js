@@ -40,6 +40,7 @@ import Urology from './Urology.png';
 import Orthopaedics from './Orthopaedics.png';
 import Dentist from './Dentist.png';
 import Psychiatry from './Psychiatry.png';
+import DoctorHelp from './DoctorHelp.png'
 
 
 export const assets = {
@@ -58,7 +59,8 @@ export const assets = {
     dropdown_icon,
     upload_icon,
     stripe_logo,
-    razorpay_logo
+    razorpay_logo,
+    DoctorHelp
 }
 
 export const specialityData = [

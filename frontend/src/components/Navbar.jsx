@@ -11,7 +11,7 @@ const Navbar = () =>{
   const [token, setToken] = useState(true);
 
     return(
-        <div className="flex bg-white items-center justify-between mt-2 rounded-lg text-sm py-4 pr-7 mb-5 border-b border-b-gray-400 h-[60px] shadow-lg shadow-slate-900/20 shadow-b-3 shadow-r-[3px] -shadow-spread-2">
+        <div className=" flex bg-white items-center justify-between mt-2 rounded-lg text-sm py-4 pr-7 mb-5 border-b border-b-gray-400 h-[60px] shadow-lg shadow-slate-900/20 shadow-b-3 shadow-r-[3px] -shadow-spread-2">
           <img className="h-[60px] cursor-pointer w-44" src={assets.logo} alt="mediConnect logo" /> 
           <div className="flex gap-14 items-center">
           <ul className="hidden md:flex justify-evenly gap-14 items-start font-semibold">
