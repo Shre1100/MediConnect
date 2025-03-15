@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import UserAppointments from './pages/UserAppointments';
 import Appointment from './pages/Appointment';
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () =>{
   return(
@@ -27,6 +28,7 @@ const App = () =>{
         {/* to schedule an appoint with a particular doctor page  */}
         <Route path="/appointment/:doctId" element={<Appointment/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }
