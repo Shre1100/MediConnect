@@ -23,34 +23,38 @@ const Doctors = () => {
     }, [doctors,speciality])
 
     return(
-        <div>
+        <div className="flex flex-col justify-center items-center">
             {/* head   */}
-            <p>Here is the list of all trusted Doctors.<br/>You can simply search by applying filters.</p>
-            <div>
+            <p className="text-lg my-3 text-slate-600 font-medium underline">Browse through our trusted doctors simply by specialities.</p>
+            <div className="flex flex-col items-center justify-center">
 
                 {/* display the specialities to browse with  */}
-                <ul>
-                    {specialityData.map((item,index)=>(
-                        <li key={index}>{item.speciality}</li>
-                    ))}
-                </ul>
+                <div>
+                    <p>General Physician</p>
+                    <p>Gynecologist</p>
+                    <p>Neurologist</p>
+                    <p>Dermatologist</p>
+                    <p>Psychiatry</p>
+                    <p>Dentist</p>
+                    <p>Orthopaedics</p>
+                    <p>Urologist</p>
+                    <p>Cardiologist</p>
+                    <p>Pediatricians</p>
+                    <p>Gastroenterologist</p>
+                </div>
                 
                 {/* container for displaying all doctors/ filtered doctors  */}
                 <div className="grid grid-cols-4 grid-cols-[1fr 1fr 1fr 1fr] gap-3">
                     {
                         filterDoctor.map((item,index)=>(
-                            <div className="flex flex-col ">
-                                <img className="bg-white" src={item.image} alt="doctor's image" />
-                                <div onClick={()=>navigate(`/appointment/${item._id}`)} className="border-t-0 border-l-2 border-r-2 border-b-2 border-slate-300 bg-slate-200">
-                                    <div className="flex items-center gap-2 text-sm text-center text-green-500">
-                                        <p className="w-2 h-2 bg-green-500 rounded-full"></p><p>Available</p>
+                            <div onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }} className='border border-[#C9D8FF] rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
+                                <img className='bg-[#EAEFFF]' src={item.image} alt="" />
+                                <div className='p-4'>
+                                    <div className={`flex items-center gap-2 text-sm text-center ${item.available ? 'text-green-500' : "text-gray-500"}`}>
+                                        <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : "bg-gray-500"}`}></p><p>{item.available ? 'Available' : "Not Available"}</p>
                                     </div>
-                                    <p className="text-gray-900 text-lg font-medium">
-                                    {item.name}
-                                    </p>
-                                    <p className="text-gray-600 text-sm">
-                                        {item.speciality}
-                                    </p>
+                                    <p className='text-[#262626] text-lg font-medium'>{item.name}</p>
+                                    <p className='text-[#5C5C5C] text-sm'>{item.speciality}</p>
                                 </div>
                             </div>
                         ))
