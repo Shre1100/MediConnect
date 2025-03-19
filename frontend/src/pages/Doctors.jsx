@@ -20,27 +20,33 @@ const Doctors = () => {
 
     useEffect(()=>{
         appyfilter()
-    }, [doctors,speciality])
+    }, [doctors,speciality]);
+
+    const [showopt,setshowopt] = useState(false);
 
     return(
         <div className="flex flex-col justify-center items-center">
             {/* head   */}
-            <p className="text-lg my-3 text-slate-600 font-medium underline">Browse through our trusted doctors simply by specialities.</p>
+            <div className="flex gap-5">
+                <p className="text-lg my-3 text-slate-600 font-medium underline">Browse through our trusted doctors simply by specialities.</p>
+                <button onClick={()=>{showopt? setshowopt(false) : setshowopt(true)}} className="bg-[white] px-5 py-1 text-md font-medium text-slate-800 border drop-shadow-md my-3">Filters</button>
+            </div>
+            
             <div className="flex flex-col items-center justify-center ">
 
                 {/* display the specialities to browse with  */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 my-3">
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">General Physician</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Gynecologist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Neurologist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Dermatologist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Psychiatry</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Dentist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Orthopaedics</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Urologist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Cardiologist</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Pediatricians</p>
-                    <p className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Gastroenterologist</p>
+                <div className= { (showopt) ? " grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 my-3" : "hidden"}>
+                    <p onClick={()=>speciality === 'General physician' ? navigate('/doctors'): navigate('/doctors/General Physician')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">General Physician</p>
+                    <p onClick={()=>speciality === 'Gynecologist' ? navigate('/doctors'): navigate('/doctors/Gynecologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Gynecologist</p>
+                    <p onClick={()=>speciality === 'Neurologist' ? navigate('/doctors'): navigate('/doctors/Neurologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Neurologist</p>
+                    <p onClick={()=>speciality === 'Dermatologist' ? navigate('/doctors'): navigate('/doctors/Dermatologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Dermatologist</p>
+                    <p onClick={()=>speciality === 'Psychiatry' ? navigate('/doctors'): navigate('/doctors/Psychiatry')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Psychiatry</p>
+                    <p onClick={()=>speciality === 'Dentist' ? navigate('/doctors'): navigate('/doctors/Dentist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Dentist</p>
+                    <p onClick={()=>speciality === 'Orthopaedics' ? navigate('/doctors'): navigate('/doctors/Orthopaedics')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Orthopaedics</p>
+                    <p onClick={()=>speciality === 'Urologist' ? navigate('/doctors'): navigate('/doctors/Urologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Urologist</p>
+                    <p onClick={()=>speciality === 'Cardiologist' ? navigate('/doctors'): navigate('/doctors/Cardiologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Cardiologist</p>
+                    <p onClick={()=>speciality === 'Pediatricians' ? navigate('/doctors'): navigate('/doctors/Pediatricians')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Pediatricians</p>
+                    <p onClick={()=>speciality === 'Gastroenterologist' ? navigate('/doctors'): navigate('/doctors/Gastroenterologist')} className="py-1 px-3 border rounded-md bg-slate-200 drop-shadow-lg border-slate-500 text-md text-slate-950">Gastroenterologist</p>
                 </div>
                 
                 {/* container for displaying all doctors/ filtered doctors  */}
