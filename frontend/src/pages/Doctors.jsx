@@ -53,8 +53,8 @@ const Doctors = () => {
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 grid-cols-[1fr 1fr 1fr 1fr 1fr] gap-3">
                     {
                         filterDoctor.map((item,index)=>(
-                            <div onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }} className=' border border-[#C9D8FF] rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
-                                <img className='bg-white h-[300px] lg:h-auto' src={item.image} alt="" />
+                            <div onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }} className='my-3 border border-[#C9D8FF] rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 w-[101%]' key={index}>
+                                <img className='bg-white h-[300px] w-[100%] lg:h-auto' src={item.image} alt="" />
                                 <div className='p-4 bg-slate-300'>
                                     <div className={`flex text-sm text-center ${item.available ? 'text-green-500 drop-shadow-lg' : "text-gray-500"}`}>
                                         <div className="py-2 px-2 border flex items-center gap-2 rounded-2xl bg-[#f4f2f2]">
