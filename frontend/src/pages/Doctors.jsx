@@ -11,16 +11,16 @@ const Doctors = () => {
 
     const navigate = useNavigate();
 
-    const appyfilter = () =>{
+    const applyfilter = () =>{
         if(speciality){
-            setfilterDoctor(doctors.filter(doc = doc.speciality === speciality))
+            setfilterDoctor(doctors.filter(doc => doc.speciality === speciality))
         } else {
             setfilterDoctor(doctors)
         }
     }
 
     useEffect(()=>{
-        appyfilter()
+        applyfilter()
     }, [doctors,speciality])
 
     return(
