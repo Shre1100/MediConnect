@@ -11,5 +11,5 @@ Well we all know nowadays to get an appointment from a doctor can be a really ti
 
 **Server:** Node, Express
 
-**Database:** PostgreSQL
+**Database:** MongoDB
 
