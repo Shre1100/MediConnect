@@ -44,8 +44,8 @@ const Navbar = () =>{
                 <img className="w-3 h-2" src={assets.dropdown_icon} alt="dropdown icon" />
                 <div className="absolute top-0 left-0 pt-14 text-base font-medium text-slate-600 z-20 hidden group-hover:block">
                   <div className="min-w-full px-4 py-2 bg-[#ffffff] shadow-md rounded flex flex-col gap-4">
-                    <p onClick={()=>navigate('profile')}className="hover:text-black cursor-pointer">Profile <hr className="h-0.5 bg-slate-400"/></p>
-                    <p onClick={()=>navigate('userAppointments')}className="hover:text-black cursor-pointer">Scheduled Appointments <hr className="h-0.5 bg-slate-400"/></p>
+                    <p onClick={()=>navigate('profile')}className="hover:text-black cursor-pointer">Profile </p><hr className="h-0.5 bg-slate-400"/>
+                    <p onClick={()=>navigate('userAppointments')}className="hover:text-black cursor-pointer">Scheduled Appointments </p><hr className="h-0.5 bg-slate-400"/>
                     <p onClick={()=>setToken(false)} className="hover:text-black cursor-pointer">Logout</p>
                   </div>
                 </div>
