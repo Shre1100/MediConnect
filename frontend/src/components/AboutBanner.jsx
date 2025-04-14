@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 const AboutBanner = () =>{
     return(
-        <div className="flex lg:flex-row gap-5 justify-center items-center mx-[-3%] bg-white bg-opacity-50 p-4 py-7">
+        <div className="flex flex-col lg:flex-row gap-2 lg:gap-5 justify-center items-center mx-[-3%] bg-white bg-opacity-50 p-4 lg:py-7">
                 {/* for the text content  */}
                 <div className="lg:w-[55%]">
                     <p className="text-[17px]">

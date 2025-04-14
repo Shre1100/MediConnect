@@ -12,15 +12,22 @@ const Appointment = () =>{
     const fetchDocInfo = async ()=>{
         const docInfo = doctors.find(doc => doc._id === docId);
         setDocInfo(docInfo);
-        console.log(docInfo)
+        console.log(docInfo);
     }
 
     useEffect(()=>{
         fetchDocInfo()
     },[doctors,docId])
+
+
     return(
         <div>
-
+            {/* doctor details  */}
+            <div>
+                <div>
+                    <img src={docInfo.image} alt="Doctor's image" />
+                </div>
+            </div>
         </div>
     );
 }
