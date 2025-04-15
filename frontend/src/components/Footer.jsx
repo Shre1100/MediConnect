@@ -63,6 +63,7 @@ const Footer = () =>{
             <div>
                 <hr />
                 <p className="text-sm text-center">Copyright ©{year} mediConnect</p>
+                <p className="text-sm text-center">-- Built by Shreya Kumar --</p>
             </div>
         </div>
     );

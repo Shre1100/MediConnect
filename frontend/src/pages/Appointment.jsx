@@ -11,13 +11,13 @@ const Appointment = () =>{
     const [docInfo, setDocInfo] = useState("doc1");
 
     const fetchDocInfo = async ()=>{
-        console.log(docId)
-        console.log(doctors);
-        console.log(docInfo);
+        // console.log(docId)
+        // console.log(doctors);
+        // console.log(docInfo);
         const docinfo = doctors.find((doc) => doc._id === docId);
-        console.log(docinfo)
+        // console.log(docinfo)
         setDocInfo(docinfo);
-        console.log(docInfo);
+        // console.log(docInfo);
     }
 
     useEffect(()=>{
@@ -30,16 +30,18 @@ const Appointment = () =>{
         return <div>Doctor not found or unavailable.</div>;
       }
 
-    return(
+    return docInfo &&(
         <div>
-            {/* doctor details  */}
+            {/* Details of the selected doctor  */}
             <div>
                 <div>
                 <img
-            src={docInfo.image || "default-image-path.png"} // Use a fallback image
-            alt="Doctor's image"
-          />
+                    src={docInfo.image} 
+                    alt="Doctor's image"
+                />
                 </div>
+
+                <div></div>
             </div>
         </div>
     );
