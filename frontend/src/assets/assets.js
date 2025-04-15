@@ -113,7 +113,7 @@ export const specialityData = [
 
 export const doctors = [
     {
-        _id: 'doc1',
+        _id: "doc1",
         available:true,
         name: 'Dr. Richard James',
         image: doc1,

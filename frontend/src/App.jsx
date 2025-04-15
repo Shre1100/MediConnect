@@ -26,7 +26,7 @@ const App = () =>{
         {/* displays appointments scheduled by the user */}
         <Route path="/userAppointments" element={<UserAppointments/>}/>
         {/* to schedule an appoint with a particular doctor page  */}
-        <Route path="/appointment/:doctId" element={<Appointment/>}/>
+        <Route path="/appointment/:docId" element={<Appointment/>}/>
       </Routes>
       <Footer/>
     </div>
