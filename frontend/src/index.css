@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --primarybg: #7483bd ;
+}
+
 .active hr{
     @apply block;
 }
