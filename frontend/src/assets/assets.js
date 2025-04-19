@@ -42,6 +42,11 @@ import Dentist from './Dentist.png';
 import Psychiatry from './Psychiatry.png';
 import DoctorHelp from './DoctorHelp.png';
 import DoctorsGroup2 from './DoctorsGroup2.jpg';
+import SignUp from './signUpIcon.png';
+import Search from './Search.png';
+import Schedule from './Schedule.png';
+import healthcare from './healthcare.png';
+import rate from './rate.png';
 
 
 export const assets = {
@@ -62,7 +67,12 @@ export const assets = {
     stripe_logo,
     razorpay_logo,
     DoctorHelp,
-    DoctorsGroup2
+    DoctorsGroup2,
+    SignUp,
+    Search,
+    Schedule,
+    healthcare,
+    rate
 }
 
 export const specialityData = [
