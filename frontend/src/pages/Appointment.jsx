@@ -1,30 +1,72 @@
 import React, { useContext, useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { doctors } from "../assets/assets";
 
 const Appointment = () =>{
 
     const {docId} = useParams();
-    // const {doctors} = useContext(AppContext);
+    const {doctors, curr} = useContext(AppContext);
 
-    const [docInfo, setDocInfo] = useState("doc1");
+    const [docInfo, setDocInfo] = useState(null);
+    // for appointment slot booking 
+    const [slots, setSlots] = useState([]);
+    const [slotIndex, setSlotIndex] = useState(0);
+    const [slotTime, setSlotTime] = useState('');
 
     const fetchDocInfo = async ()=>{
-        // console.log(docId)
-        // console.log(doctors);
-        // console.log(docInfo);
         const docinfo = doctors.find((doc) => doc._id === docId);
         // console.log(docinfo)
         setDocInfo(docinfo);
         // console.log(docInfo);
     }
 
+    const getSlots = async ()=>{
+        setSlots([]);
+        //getting current date
+        let today = new Date();
+        for(let i = 0; i<7; i++){
+            let currdate = new Date(today);
+            currdate.setDate(today.getDate() + i);
+            //Set end time of the particular day with index
+            let endTime = new Date();
+            endTime.setDate(today.getDate()+i);
+            endTime.setHours(21,0,0,0)
+
+            //setHours
+            if(today.getDate() === currdate.getDate()){
+                currdate.setHours(currdate.getHours()>10? currdate.getHours() + 1 : 10);
+                currdate.setMinutes(currdate.getMinutes()>30? 30 : 0);
+            } else{
+                currdate.setHours(10);
+                currdate.setMinutes(0)
+            }
+            let timeslots = [];
+            while(currdate < endTime){
+                let formattedTime = currdate.toLocaleTimeString([], {hour: '2-digit', digit: '2-digit'});
+                //add slots to arr
+                timeslots.push({
+                    datetime: new Date(currdate),
+                    time: formattedTime
+                })
+
+                currdate.setMinutes(currdate.getMinutes()+30);
+            }
+            setSlots(prev => ([...prev,timeslots]));
+        }
+}
     useEffect(()=>{
         if (doctors.length > 0) {
             fetchDocInfo();
         }
     },[doctors,docId])
+
+    useEffect(()=>{
+        getSlots();
+    },[docInfo])
+
+    useEffect(()=>{
+        console.log(slots);
+    },[slots]);
 
     if (!docInfo) {
         return <div>Doctor not found or unavailable.</div>;
@@ -56,6 +98,7 @@ const Appointment = () =>{
                         <p className="font-semibold text-lg md:text-xl md:my-2">ABOUT</p>
                         <p className="text-center md:text-lg xl:mb-2">{docInfo.about}</p>
                     </div>
+                    <p className="p-2 lg:text-[1.01rem] text-center font-semibold bg-green-300 border border-solid border-green-600 py-2 text-sm md:text-md md:w-1/3 w-1/2 lg:w-1/4 rounded-xl">Consultation Fee : {curr}<span>{docInfo.fees}</span></p>
                 </div>
             </div>
         </div>

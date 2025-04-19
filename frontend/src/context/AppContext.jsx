@@ -8,8 +8,10 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
 
+    const curr = 'Rs. ';
+
     const value = {
-        doctors
+        doctors, curr
     }
 
     return (
