@@ -6,6 +6,7 @@ const Appointment = () =>{
 
     const {docId} = useParams();
     const {doctors, curr} = useContext(AppContext);
+    const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
     const [docInfo, setDocInfo] = useState(null);
     // for appointment slot booking 
@@ -42,14 +43,14 @@ const Appointment = () =>{
             }
             let timeslots = [];
             while(currdate < endTime){
-                let formattedTime = currdate.toLocaleTimeString([], {hour: '2-digit', digit: '2-digit'});
+                let formattedTime = currdate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
                 //add slots to arr
                 timeslots.push({
                     datetime: new Date(currdate),
                     time: formattedTime
                 })
 
-                currdate.setMinutes(currdate.getMinutes()+30);
+                currdate.setMinutes(currdate.getMinutes() + 30);
             }
             setSlots(prev => ([...prev,timeslots]));
         }
@@ -73,7 +74,7 @@ const Appointment = () =>{
       }
 
     return docInfo &&(
-        <div>
+        <div className="mb-5">
             {/* Details of the selected doctor  */}
             <div className="flex flex-col gap-5 lg:gap-2 items-center md:mt-12 xl:flex-row">
                 <div className="rounded-full bg-slate-300 mx-[4.3rem] drop-shadow-2xl xl:w-[60%] lg:mx-5">
@@ -101,6 +102,41 @@ const Appointment = () =>{
                     <p className="p-2 lg:text-[1.01rem] text-center font-semibold bg-green-300 border border-solid border-green-600 py-2 text-sm md:text-md md:w-1/3 w-1/2 lg:w-1/4 rounded-xl">Consultation Fee : {curr}<span>{docInfo.fees}</span></p>
                 </div>
             </div>
+
+            {/* slot booking options  */}
+
+            <div className="w-full flex items-center flex-col md:flex-row sm:ml-2 lg:ml-11 mt-4 font-medium text-gray-700">
+                <p className="lg:text-lg mb-3 mr-5 xl:mr-24">Available Appointment Slots : </p>
+                <div className="lg:w-[75%] flex flex-col items-start">
+                    <div className="flex gap-5 lg:gap-10 justify-center items-center">
+                        {/* for day and  date display  */}
+                        {slots.length && slots.map((item,idx)=>{return(
+                            <div className="flex flex-col justify-center items-center gap-3" key={idx}>
+                                <p className="text-gray-900">{item[0] && days[item[0].datetime.getDay()]}</p>
+                                <div onClick={()=> setSlotIndex(idx)} className={` cursor-pointer text-black border border-solid border-black p-2 lg:p-4 rounded-full h-1/2 ${slotIndex === idx? 'bg-primary text-white border-purple-600 font-bold duration-100 drop-shadow-md translate-y-[-5px] transition-none ease-linear' : 'bg-slate-200 hover:bg-slate-300 hover:border-2'}`}>
+                                    <p>{item[0] && item[0].datetime.getDate()}</p>
+                                </div>
+                            </div>
+                        )})}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 mt-3 overflow-x-scroll">
+                        {slots.length && slots[slotIndex].map((item,idx)=>{
+                            return(
+                                <p onClick={()=>setSlotTime(item.time)} className={`flex-shrink-0 cursor-pointer border border-solid border-gray-600 px-2 py-1 rounded-lg ${item.time === slotTime? 'bg-primary text-white font-bold': 'hover:bg-slate-200'}`} key={idx}>
+                                    {item.time.toLowerCase()}
+                                </p>
+                            )
+                        })}
+                    </div>
+
+                    <div className="my-8">
+                        <button className="bg-primary hover:font-semibold hover:scale-105 hover:translate-y-[-5px] transition-all text-white px-7 rounded-lg py-2">Book Now</button>
+                    </div>
+                </div>
+
+            </div>
+            <hr className="border border-solid border-gray-400 mx-8" />
         </div>
     );
 }
