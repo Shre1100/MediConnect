@@ -22,10 +22,10 @@ const KeyFeatures = () => {
         <h2 className='text-xl xl:text-3xl font-semibold my-8'>Key Features and Benefits</h2>
         <div>
           {features.map((item,idx)=>{ return(
-            <div className='flex gap-2 items-center my-4 lg:px-16 justify-start' key={idx}>
+            <div className='hover:scale-100 hover:shadow-xl hover:translate-y-[-3px] transition-all ease-linear duration-150 hover:border hover:border-solid hover:border-black flex gap-2 items-center my-4 lg:px-16 justify-start' key={idx}>
                 <img className='h-6 md:h-7 lg:h-10' src={assets.rightArrow} alt="Right arrow" />
                 <div>
-                    <p className='font-bold text-start lg:text-xl md:text-lg lg:font-semibold'>{item.title}: <span className='text-start p-2 lg:text-lg font-normal'>{item.content}</span></p>
+                    <p className='cursor-default font-bold text-start lg:text-xl md:text-lg lg:font-semibold'>{item.title}: <span className='text-start p-2 lg:text-lg font-normal'>{item.content}</span></p>
                 </div>
             </div>
           )
