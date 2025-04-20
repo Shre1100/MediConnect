@@ -47,6 +47,7 @@ import Search from './Search.png';
 import Schedule from './Schedule.png';
 import healthcare from './healthcare.png';
 import rate from './rate.png';
+import rightArrow from './rightArrow.png';
 
 
 export const assets = {
@@ -72,7 +73,8 @@ export const assets = {
     Search,
     Schedule,
     healthcare,
-    rate
+    rate,
+    rightArrow
 }
 
 export const specialityData = [

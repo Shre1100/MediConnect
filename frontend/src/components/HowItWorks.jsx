@@ -4,7 +4,7 @@ import { assets } from "../assets/assets";
 const HowItWorks = () => {
     return(
         <div className="my-7 bg-white p-3 py-7 mx-[-3%] flex flex-col justify-center items-center">
-            <h2 className="text-xl font-semibold underline mb-3 md:text-2xl">How It Works?</h2>
+            <h2 className="text-xl lg:text-3xl font-semibold underline mb-3 md:text-2xl">How It Works?</h2>
 
             {/* step by step procedure  */}
             <div className="flex gap-2 flex-wrap justify-center items-center w-[70%] md:grid md:grid-cols-3 md:gap-5 lg:grid-cols-5 lg:gap-2 lg:w-[97%]">
