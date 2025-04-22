@@ -65,9 +65,6 @@ const Appointment = () =>{
         getSlots();
     },[docInfo])
 
-    useEffect(()=>{
-        console.log(slots);
-    },[slots]);
 
     if (!docInfo) {
         return <div>Doctor not found or unavailable.</div>;
