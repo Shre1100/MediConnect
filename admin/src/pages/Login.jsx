@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext";
 // import {assets} from "../assets/assets";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 const Login = () =>{
 
@@ -17,6 +18,14 @@ const Login = () =>{
         try{
             if (state === 'Admin') {
 
+                const {data} = await axios.post(backendurl + '/api/admin/login', {email,password});
+                if(data.success){
+                    //storing the token
+                    localStorage.setItem('aToken',data.token);
+                    setAToken(data.token);
+                } else{
+                    toast.error(data.message);
+                }
                 
             } else {
 
@@ -42,12 +51,12 @@ const Login = () =>{
                 <p className="text-base">Please enter the following details to sign in.</p>
                 <div className="mt-5 flex flex-col gap-2 w-full">
                     <p className="font-semibold">Email:</p>
-                    <input onClick={(e)=>setEmail(e.target.value)} value={email} className="border-b-2 outline-none" type="email" required />
+                    <input onChange={(e)=>setEmail(e.target.value)} value={email} className="border-b-2 outline-none" type="email" required />
                 </div>
 
                 <div className="mt-3 flex flex-col gap-2 w-full">
                     <p className="font-semibold">Password</p>
-                    <input onClick={(e)=>setPassword(e.target.value)} value={password} className="border-b-2 outline-none" type="password" required />
+                    <input onChange={(e)=>setPassword(e.target.value)} value={password} className="border-b-2 outline-none" type="password" required />
                 </div>
 
                 <button className="cursor-pointer self-center w-full my-5 text-white text-lg font-semibold py-2 bg-[#7483bd] hover:scale-105 shadow-lg transition-all rounded-md hover:bg-[#241f35] duration-300">Sign In</button>
