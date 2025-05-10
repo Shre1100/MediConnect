@@ -18,7 +18,7 @@ const Appointment = () =>{
         const docinfo = doctors.find((doc) => doc._id === docId);
         // console.log(docinfo)
         setDocInfo(docinfo);
-        // console.log(docInfo);
+        console.log(docInfo);
     }
 
     const getSlots = async ()=>{
@@ -94,9 +94,9 @@ const Appointment = () =>{
                     {/* about doctor */}
                     <div className="flex-col flex justify-center items-center border border-solid border-[#7483bd] rounded-lg bg-gray-100 p-3 xl:drop-shadow-md">
                         <p className="font-semibold text-lg md:text-xl md:my-2">ABOUT</p>
-                        <p className="text-center md:text-lg xl:mb-2">{docInfo.about}</p>
+                        <p className="text-center md:text-lg xl:mb-2">{docInfo.summary}</p>
                     </div>
-                    <p className="p-2 lg:text-[1.01rem] text-center font-semibold bg-green-300 border border-solid border-green-600 py-2 text-sm md:text-md md:w-1/3 w-1/2 lg:w-1/4 rounded-xl">Consultation Fee : {curr}<span>{docInfo.fees}</span></p>
+                    <p className="p-2 lg:text-[1.01rem] text-center font-semibold bg-green-300 border border-solid border-green-600 py-2 text-sm md:text-md md:w-1/3 w-1/2 lg:w-1/4 rounded-xl">Consultation Fee : {curr}<span>{docInfo.fee}</span></p>
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {assets} from '../assets/assets';
 import { NavLink, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Navbar = () =>{
 
@@ -8,7 +9,12 @@ const Navbar = () =>{
 
   // for change in login button when user logs in 
   const [menu, setMenu] =  useState(false);
-  const [token, setToken] = useState(true);
+  const {token, setToken} = useContext(AppContext);
+
+  const logout = () =>{
+    setToken(false);
+    localStorage.removeItem('token');
+  }
 
     return(
         <div className=" flex bg-white items-center justify-between mt-2 rounded-lg text-sm py-4 md:pr-7 mb-5 border-b border-b-gray-400 h-[60px] shadow-lg shadow-slate-900/20 shadow-b-3 shadow-r-[3px] -shadow-spread-2">
@@ -46,7 +52,7 @@ const Navbar = () =>{
                   <div className="min-w-full px-4 py-2 bg-[#ffffff] shadow-md rounded flex flex-col gap-4">
                     <p onClick={()=>navigate('profile')}className="hover:text-black cursor-pointer">Profile </p><hr className="h-0.5 bg-slate-400"/>
                     <p onClick={()=>navigate('userAppointments')}className="hover:text-black cursor-pointer">Scheduled Appointments </p><hr className="h-0.5 bg-slate-400"/>
-                    <p onClick={()=>setToken(false)} className="hover:text-black cursor-pointer">Logout</p>
+                    <p onClick={logout} className="hover:text-black cursor-pointer">Logout</p>
                   </div>
                 </div>
               </div>

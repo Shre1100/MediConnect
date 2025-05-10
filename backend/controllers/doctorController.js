@@ -1,6 +1,7 @@
 import doctorModel from "../models/doctorModel.js";
 
 
+// changing the availability status of doctors 
 
 const changeAvailablity = async (req,res) =>{
     try {
@@ -16,4 +17,16 @@ const changeAvailablity = async (req,res) =>{
     }
 }
 
-export {changeAvailablity};
+// getting doctor list 
+
+const doctorList = async (req,res) =>{
+    try {
+        const doctors = await doctorModel.find({}).select(['-password', '-email']);
+        res.json({success:true, doctors});
+    } catch (error) {
+        console.log(error);
+        res.json({success:false, message:error.message});
+    }
+}
+
+export {changeAvailablity, doctorList};
