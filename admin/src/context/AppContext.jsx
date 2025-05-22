@@ -4,8 +4,19 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) =>{
 
-    const value = {
+    const calcAge = (dob) =>{
+        const today = new Date();
+        const birthDate = new Date(dob);
+        
 
+        let age = today.getFullYear() - birthDate.getFullYear();
+
+        return age;
+    }
+    const currency = "Rs. "
+
+    const value = {
+        calcAge, currency
     }
 
     return(

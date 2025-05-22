@@ -15,7 +15,7 @@ const AllDoctors = () =>{
 
     return(
         // displaying all doctors list 
-        <div className="flex flex-col items-start bg-white w-full mr-10 rounded-xl p-5 max-h-[90vh] gap-10">
+        <div className="flex flex-col items-start bg-white w-full mr-10 rounded-xl p-5 min-h-[90vh] gap-10">
             <h1 className="underline text-lg font-semibold px-5 md:text-xl">Doctors List</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-cols-[1fr 1fr 1fr 1fr] gap-3 ">
                 {doctors.map((item,index)=>(

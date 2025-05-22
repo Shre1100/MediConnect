@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext";
-// import {assets} from "../assets/assets";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { DoctorContext } from "../context/DoctorContext";
 
 const Login = () =>{
 
     const [state,setstate] = useState("Admin");
 
     const {setAToken, backendurl} = useContext(AdminContext);
+
+    const {setDToken, backendUrl} = useContext(DoctorContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,12 +30,18 @@ const Login = () =>{
                 }
                 
             } else {
-
-
+                const {data} = await axios.post(backendUrl + '/api/doctor/login',{email,password});
+                if(data.success){
+                    //storing the token
+                    localStorage.setItem('dToken',data.token);
+                    setDToken(data.token);
+                } else{
+                    toast.error(data.message);
+                }
             }
 
         }catch(err){
-
+            toast.error(err.message);
         }
     }
 
@@ -59,7 +67,12 @@ const Login = () =>{
                     <input onChange={(e)=>setPassword(e.target.value)} value={password} className="border-b-2 outline-none" type="password" required />
                 </div>
 
-                <button className="cursor-pointer self-center w-full my-5 text-white text-lg font-semibold py-2 bg-[#7483bd] hover:scale-105 shadow-lg transition-all rounded-md hover:bg-[#241f35] duration-300">Sign In</button>
+                <button className="cursor-pointer self-center w-full mt-5 text-white text-lg font-semibold py-2 bg-[#7483bd] hover:scale-105 shadow-lg transition-all rounded-md hover:bg-[#241f35] duration-300">Sign In</button>
+                {
+                    state === 'Doctor'? 
+                    <p>Don't have an account? <span className="text-[#7483bd] cursor-pointer">Register here</span></p>:
+                    <p></p>
+                }
             </div>
         </form>
     )

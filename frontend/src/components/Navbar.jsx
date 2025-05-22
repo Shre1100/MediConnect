@@ -9,7 +9,7 @@ const Navbar = () =>{
 
   // for change in login button when user logs in 
   const [menu, setMenu] =  useState(false);
-  const {token, setToken} = useContext(AppContext);
+  const {token, setToken, userData} = useContext(AppContext);
 
   const logout = () =>{
     setToken(false);
@@ -42,11 +42,11 @@ const Navbar = () =>{
           <div className="flex items-center md:mr-8">
             {
               // is user logged in or not 
-              token?
+              token && userData?
 
               // if yes then display profile and dropdown 
               <div className="pl-3 flex items-center gap-2 group relative">
-                <img className="w-10 rounded-full" src={assets.profile_pic} alt="profile picture" />
+                <img className="w-10 rounded-full" src={userData.image} alt="profile picture" />
                 <img className="w-3 h-2" src={assets.dropdown_icon} alt="dropdown icon" />
                 <div className="absolute top-0 left-0 pt-14 text-base font-medium text-slate-600 z-20 hidden group-hover:block">
                   <div className="min-w-full px-4 py-2 bg-[#ffffff] shadow-md rounded flex flex-col gap-4">

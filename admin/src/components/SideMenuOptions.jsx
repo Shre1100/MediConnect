@@ -8,7 +8,7 @@ const SideMenuOptions = () =>{
     const {aToken} = useContext(AdminContext);
 
     return(
-        <div className="bg-white sm:mx-10 min-h-screen rounded-xl shadow-2xl pt-3">
+        <div className="bg-white sm:mx-10 min-h-[86vh] rounded-xl shadow-2xl pt-3">
             {
                 aToken && <ul className="text-gray-600">
                     <NavLink className={({isActive})=>`flex items-center gap-5 py-3.5 px-3 md:px-9 transition-all duration-150 md:min-w-72 cursor-pointer ${isActive?'bg-[#e2eaff] border-b-2 border-b-[#241f35] text-[#241f35] font-semibold md:text-lg':''}`} to={'/dashboard'}>

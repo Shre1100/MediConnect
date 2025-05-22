@@ -1,1 +1,42 @@
 @import "tailwindcss";
+@import 'react-calendar/dist/Calendar.css';
+
+@import 'react-calendar/dist/Calendar.css';
+
+.react-calendar {
+  @apply border-none; /* Remove default border */
+  @apply shadow-none; /* Remove default shadow */
+  @apply rounded-lg; /* Apply Tailwind's rounded corners */
+  @apply p-4; /* Add some padding */
+  @apply font-sans; /* Use your default font */
+}
+
+/* Day tiles */
+.react-calendar__tile {
+  @apply rounded-md;
+}
+
+/* Active day */
+.react-calendar__tile--active {
+  @apply bg-[#89a6ef] text-gray-700 font-bold;
+}
+
+/* Hover effect */
+.react-calendar__tile:hover {
+  @apply bg-gray-200;
+}
+
+/* Navigation buttons */
+.react-calendar__navigation button {
+  @apply rounded-md;
+}
+
+.react-calendar__navigation button:hover {
+  @apply bg-gray-200;
+}
+
+/* To ensure selected date is always visible */
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  @apply bg-[#5672ba] text-white scale-105 duration-150; /* Darker blue on hover/focus for active date */
+}

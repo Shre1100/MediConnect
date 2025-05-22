@@ -11,7 +11,9 @@ const AppContextProvider = (props) => {
     const curr = 'Rs. ';
 
     const backendurl = import.meta.env.VITE_BACKEND_URL;
-    const [doctors,setDoctors] = useState([])
+    const [doctors,setDoctors] = useState([]);
+
+    const [userData, setUserData] = useState({});
 
     // calling the api 
 
@@ -29,15 +31,42 @@ const AppContextProvider = (props) => {
         }
     }
 
+    const loadUserProfile = async() =>{
+        try {
+            const {data} = await axios.get(backendurl+'/api/user/get-profile',{headers:{token}});
+            if (data.success) {
+                setUserData(data.userData);
+                
+            }else{
+                toast.error(data.message);
+            }
+            
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    }
+
     const value = {
-        doctors, curr,
+        doctors, curr, getDoctorsData,
         token, setToken,
-        backendurl
+        backendurl,
+        userData, setUserData,
+        loadUserProfile,
+
     }
 
     useEffect(()=>{
         getDoctorsData();
     },[])
+
+    useEffect(()=>{
+        if(token){
+            loadUserProfile();
+        }else{
+            setUserData({});
+        }
+    },[token])
 
     return (
         <AppContext.Provider value={value}>
