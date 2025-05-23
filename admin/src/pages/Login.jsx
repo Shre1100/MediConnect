@@ -11,7 +11,7 @@ const Login = () =>{
 
     const {setAToken, backendurl} = useContext(AdminContext);
 
-    const {setDToken, backendUrl} = useContext(DoctorContext);
+    const {setDToken, backendUrl, request,setRequest} = useContext(DoctorContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -75,7 +75,7 @@ const Login = () =>{
                 <button className="cursor-pointer self-center w-full mt-5 text-white text-lg font-semibold py-2 bg-[#7483bd] hover:scale-105 shadow-lg transition-all rounded-md hover:bg-[#241f35] duration-300">Sign In</button>
                 {
                     state === 'Doctor'? 
-                    <p>Don't have an account? <span className="text-[#7483bd] cursor-pointer">Register here</span></p>:
+                    <p>Don't have an account? <span onClick={()=>{setRequest(true);navigate('/request')}} className="text-[#7483bd] cursor-pointer">Register here</span></p>:
                     <p></p>
                 }
             </div>

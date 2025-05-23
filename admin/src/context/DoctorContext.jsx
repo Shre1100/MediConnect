@@ -13,6 +13,7 @@ const DoctorContextProvider = (props) =>{
     const [appointments, setAppointments] = useState([])
     const [dashData, setDashData] = useState({});
     const [profileData, setProfileData] = useState({});
+    const [request,setRequest] = useState(false);
 
     const getAppointments = async () => {
         try {
@@ -104,7 +105,8 @@ const DoctorContextProvider = (props) =>{
         getAppointments, appointments, setAppointments,
         cancelAppointment, completeAppointment,
         getDashData, setDashData, dashData,
-        getProfileDocData, profileData, setProfileData
+        getProfileDocData, profileData, setProfileData,
+        request,setRequest
     }
 
     return(

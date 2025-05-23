@@ -42,7 +42,8 @@ const Dashboard = () => {
     dashData.latestAppointments && (
       <div className="w-full flex">
         <div className="w-full flex flex-col gap-3">
-          <div className="w-full grid grid-cols-2 gap-5 mt-1">
+          <div className="w-full flex flex-col md:grid grid-cols-2 gap-5 mt-1">
+            
             <div className="rounded-2xl p-3 bg-white cursor-pointer hover:scale-105 duration-150">
               <div className="flex gap-5 items-center">
                 <img
@@ -104,7 +105,7 @@ const Dashboard = () => {
           <div className="bg-white mt-1 rounded-2xl">
             <div className="flex gap-3 border-b-3 border-b-gray-500 items-center p-4">
               <img className="w-5 h-5" src={assets.list_icon} alt="list icon" />
-              <p className="text-lg font-semibold">Recent Bookings</p>
+              <p className="md:text-lg font-semibold">Recent Bookings</p>
               <button
                 onClick={() => navigate("/all-appointments")}
                 className="ml-auto px-4 bg-gray-200 py-1 rounded-2xl font-semibold text-sm cursor-pointer hover:bg-gray-400 hover:text-white"
@@ -120,13 +121,13 @@ const Dashboard = () => {
                   key={idx}
                 >
                   <img
-                    className="w-[50px] bg-slate-200 rounded-full"
+                    className="hidden md:block w-[50px] bg-slate-200 rounded-full"
                     src={item.docData.image}
                     alt="doctor image"
                   />
 
                   <div className="min-w-2/3 ml-3">
-                    <p className="text-[17px]">{item.docData.name}</p>
+                    <p className="text-sm md:text-[17px]">{item.docData.name}</p>
                     <p className="text-sm font-semibold text-gray-500">
                       {" "}
                       Scheduled on :- {slotDateFormat(item.slotDate)}
@@ -155,7 +156,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-2/4">
+        <div className="hidden lg:block w-2/4">
           <Calendar />
         </div>
       </div>

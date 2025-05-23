@@ -2,6 +2,9 @@ import doctorModel from "../models/doctorModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
+import { v2 as cloudinary } from "cloudinary";
+import validator from "validator";
+import RequestModel from "../models/doctorRequest.js";
 
 
 // changing the availability status of doctors 
@@ -173,4 +176,53 @@ const updateDoctorProfile = async (req,res) => {
     }
 }
 
-export {changeAvailablity, doctorList, loginDoctor, appointmentsDoctor, appointmentsComplete, appointmentsCancel, doctorDashboard, updateDoctorProfile, getDoctorProfile};
+//to send request to the Admin for approval
+
+const sendRequest = async (req,res) => {
+    try {
+        const { name, email, password, speciality, degree, experience, summary, fee, address } = req.body;
+        const imageFile = req.file
+        if (!name || !email || !password || !speciality || !degree || !experience || !summary || !fee || !address) {
+            return res.json({ success: false, message: "Missing Details" })
+        }
+        //email validation
+        if (!validator.isEmail(email)) {
+            return res.json({ success: false, message: "Please enter a valid email" })
+        }
+        //password validation
+        if (password.length < 8) {
+            return res.json({ success: false, message: "Please enter a strong password" })
+        }
+
+        const salt = await bcrypt.genSalt(10); // the more no. round the more time it will take
+        const hashedPassword = await bcrypt.hash(password, salt)
+
+        // upload image to cloudinary
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
+        const imageUrl = imageUpload.secure_url
+
+        const doctorData = {
+            name,
+            email,
+            image: imageUrl,
+            password: hashedPassword,
+            speciality,
+            degree,
+            experience,
+            summary,
+            fee,
+            address: JSON.parse(address),
+            date: Date.now()
+        }
+
+        const newRequest = new RequestModel(doctorData);
+        await newRequest.save();
+        res.json({ success: true, message: 'Request Sent' })
+        
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+export {changeAvailablity,sendRequest, doctorList, loginDoctor, appointmentsDoctor, appointmentsComplete, appointmentsCancel, doctorDashboard, updateDoctorProfile, getDoctorProfile};

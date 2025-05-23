@@ -12,8 +12,43 @@ const AdminContextProvider = (props) =>{
     const [doctors, setDoctors] = useState([]);
     const [appointments, setAppointments] = useState([]);
     const [dashData, setDashData] =  useState({});
+    const [requests, setRequests] = useState([]);
 
     const backendurl = import.meta.env.VITE_BACKEND_URL;
+
+    //to reject a request
+
+    const rejection = async (requestId) => {
+        try {
+            const {data} = await axios.post(backendurl + "/api/admin/reject-request",{requestId}, {headers:{aToken}});
+            if(data.success){
+                toast.success(data.message);
+                getAllRequest();
+            }else{
+                toast.error(data.message);
+            }
+            
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
+
+    //to accept a request
+
+    const acceptRequest = async (requestId) => {
+        try {
+            const {data} = await axios.post(backendurl + '/api/admin/accept-request', {requestId}, {headers:{aToken}});
+            if(data.success){
+                toast.success(data.message);
+                getAllRequest();
+            }else{
+                 toast.error(data.message);
+            }
+            
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
 
     const getAllDoctors = async () =>{
         try{
@@ -78,7 +113,24 @@ const AdminContextProvider = (props) =>{
             const {data} =  await axios.get(backendurl+ '/api/admin/dashboard',{headers:{aToken}});
             if(data.success){
                 setDashData(data.dashboardData);
-                console.log(data.dashboardData)
+                // console.log(data.dashboardData)
+            }else{
+                toast.error(data.message);
+            }
+            
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
+
+    //get request by the doctors
+    const getAllRequest = async () => {
+        try {
+            const {data} =  await axios.get(backendurl + '/api/admin/doctor-requests',{headers:{aToken}});
+            if(data.success){
+                setRequests(data.requests);
+                console.log(data.requests);
+
             }else{
                 toast.error(data.message);
             }
@@ -94,7 +146,8 @@ const AdminContextProvider = (props) =>{
         getAllDoctors, changeAvailability,
         appointments, setAppointments,
         getAllAppointments, cancelAppointments, getDashboardData,
-        dashData
+        dashData, getAllRequest, requests, setRequests,
+        rejection, acceptRequest
     }
 
     return(

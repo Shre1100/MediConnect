@@ -13,11 +13,12 @@ import { DoctorContext } from "./context/DoctorContext";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorAppointment from "./pages/Doctor/DoctorAppointment";
 import DoctorProfile from "./pages/Doctor/DoctorProfile";
+import RequestPage from "./pages/Doctor/RequestPage";
 
 const App = () => {
 
   const {aToken} = useContext(AdminContext);
-  const {dToken} = useContext(DoctorContext);
+  const {dToken, request,setRequest} = useContext(DoctorContext);
 
   return aToken || dToken ? (
     <div>
@@ -41,7 +42,16 @@ const App = () => {
         </Routes>
       </div>
     </div>
-  ) : (
+  ) : 
+    request ? 
+    <>
+      <Routes>
+        <Route path="/request" element={<RequestPage/>}></Route>
+      </Routes>
+      <ToastContainer/>
+    </>
+      : 
+    (
     <>
     <Login/>
     <ToastContainer/>

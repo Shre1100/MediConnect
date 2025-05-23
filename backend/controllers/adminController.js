@@ -5,6 +5,7 @@ import doctorModel from "../models/doctorModel.js";
 import jwt from "jsonwebtoken";
 import appointmentModel from "../models/appointmentModel.js";
 import userModel from "../models/userModel.js";
+import RequestModel from "../models/doctorRequest.js";
 
 //api for adding doctors
 const addDoctor = async (req, res) => {
@@ -186,4 +187,74 @@ const adminDashboard = async (req,res) => {
   }
 }
 
-export { addDoctor, adminLogin, allDoctors, appointmentsAdmin, cancelAppointmentByAdmin, adminDashboard };
+//to get all requests 
+const getDoctorRequest = async (req,res) => {
+  try {
+    const requests = await RequestModel.find({ isApproved: false });
+    res.json({success:true, requests});
+
+    
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+}
+
+//to reject requests
+
+const rejectRequest = async(req,res)=>{
+  try {
+    const { requestId } = req.body;
+
+    if (!requestId) {
+      return res.json({ success: false, message: "Request ID is required to reject a request." });
+    }
+
+    const result = await RequestModel.findByIdAndDelete(requestId);
+
+    res.json({ success: true, message: "Doctor request rejected" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+}
+
+//to accept incoming request
+
+const acceptRequest = async (req,res) => {
+  try {
+    const {requestId} = req.body;
+
+    const acceptedRequest = await RequestModel.findByIdAndUpdate(
+      requestId,
+      { isApproved: true },
+      { new: true }
+    );
+
+    const newDoctor = new doctorModel({
+            name: acceptedRequest.name,
+            email: acceptedRequest.email,
+            password: acceptedRequest.password,
+            speciality: acceptedRequest.speciality,
+            experience: acceptedRequest.experience,
+            degree: acceptedRequest.degree,
+            address: acceptedRequest.address,
+            summary: acceptedRequest.summary,
+            image: acceptedRequest.image,
+            available: acceptedRequest.available,
+            fee: acceptedRequest.fee,
+            date: acceptedRequest.date,
+            slots_booked: acceptedRequest.slots_booked
+        });
+
+        await newDoctor.save();
+        await RequestModel.findByIdAndDelete(requestId);
+        res.json({ success: true, message: "Doctor request accepted and doctor added!" });
+    
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+}
+
+export { addDoctor, acceptRequest ,getDoctorRequest, adminLogin, allDoctors, appointmentsAdmin, cancelAppointmentByAdmin, adminDashboard, rejectRequest };
