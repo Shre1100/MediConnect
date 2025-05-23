@@ -30,7 +30,7 @@ const UserAppointments = () =>{
                 
                 const completed = data.appointments.filter(item => item.isCompleted).reverse();
                 const upcoming = data.appointments.filter(item => !item.isCompleted);
-                setCompletedAppointments(completed.reverse());
+                setCompletedAppointments(completed);
                 setAppointments(upcoming.reverse());
                 // console.log(completedAppointments);
                 // console.log(appointments)
@@ -80,14 +80,14 @@ const UserAppointments = () =>{
                 <div></div>
 
                 <div className="flex items-center flex-col lg:flex-row gap-5 mx-6">
-                    {!item.cancelled && item.payment && <button className="font-semibold text-sm lg:text-base px-5 py-2 bg-slate-300 rounded-2xl">Pre-Paid</button>}
-                    {!item.cancelled && !item.payment && state === 'Upcoming' && <button onClick={()=>payOnline(item._id)} className="hover:scale-105 transition-all duration-300 font-semibold text-sm lg:text-base px-5 py-2 bg-slate-300 rounded-2xl">Pay Online</button>}
-                    {!item.cancelled && !item.payment && state === 'Upcoming' ?
+                    {!item.cancelled && item.payment && !item.isCompleted && <button className="font-semibold text-sm lg:text-base px-5 py-2 bg-slate-300 rounded-2xl">Pre-Paid</button>}
+                    {!item.cancelled && !item.payment && state === 'Upcoming' && !item.isCompleted && <button onClick={()=>payOnline(item._id)} className="hover:scale-105 transition-all duration-300 font-semibold text-sm lg:text-base px-5 py-2 bg-slate-300 rounded-2xl">Pay Online</button>}
+                    {!item.cancelled && !item.payment && state === 'Upcoming'&& !item.isCompleted ?
                         <button onClick={() => cancelAppointment(item._id)} className="hover:scale-105 transition-all duration-300 font-semibold text-sm lg:text-base px-5 py-2 bg-red-600 rounded-2xl text-white">Cancel</button> :
                         <div></div>
                     }
                     {item.cancelled && <button className=" border border-gray-500 text-gray-400 cursor-not-allowed hover:text-red-600 px-3 py-2 max-w-32 lg:max-w-48">Appointment Cancelled</button>}
-                    {state === 'Completed' && <span className="text-green-500 font-semibold">Completed</span>}
+                    {state === 'Completed' && item.isCompleted && <span className="text-green-500 font-semibold">Completed</span>}
                 </div>
             </div>
         ));

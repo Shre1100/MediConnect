@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { AdminContext } from "../../context/AdminContext";
 import { assets } from "../../assets/assets";
 import Calendar from "../../components/Calendar";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const { aToken, getDashboardData, cancelAppointments, dashData } =
     useContext(AdminContext);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const months = [
     "Jan",
@@ -105,7 +105,10 @@ const Dashboard = () => {
             <div className="flex gap-3 border-b-3 border-b-gray-500 items-center p-4">
               <img className="w-5 h-5" src={assets.list_icon} alt="list icon" />
               <p className="text-lg font-semibold">Recent Bookings</p>
-              <button onClick={()=>navigate('/all-appointments')} className="ml-auto px-4 bg-gray-200 py-1 rounded-2xl font-semibold text-sm cursor-pointer hover:bg-gray-400 hover:text-white">
+              <button
+                onClick={() => navigate("/all-appointments")}
+                className="ml-auto px-4 bg-gray-200 py-1 rounded-2xl font-semibold text-sm cursor-pointer hover:bg-gray-400 hover:text-white"
+              >
                 More
               </button>
             </div>
@@ -134,6 +137,10 @@ const Dashboard = () => {
                     <p className="px-2 py-1 bg-gray-200 rounded-2xl cursor-not-allowed">
                       Cancelled
                     </p>
+                  ) : item.isCompleted ? (
+                    <button className="px-1 py-1 border-green-400 border-2 text-green-400 rounded-2xl cursor-default font-semibold">
+                      Completed
+                    </button>
                   ) : (
                     <button
                       onClick={() => cancelAppointments(item._id)}
