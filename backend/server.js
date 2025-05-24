@@ -17,7 +17,8 @@ connectCloudinary();
 //middlewares
 const allowedOrigins = [
   process.env.FRONTEND_URL,
-  "https://your-admin-app-url.vercel.app",         
+  
+  "https://medi-connect-admin-doctor.vercel.app/",         
   "http://localhost:5174",                         
 ];
 
