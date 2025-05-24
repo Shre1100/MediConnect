@@ -10,7 +10,7 @@ function RightSideCalendar() {
 
   return (
     <div
-      className="fixed top-23 right-10 w-78 bg-white border border-gray-200 rounded-lg shadow-lg p-3"
+      className="fixed top-23 right-10 w-72 bg-white border border-gray-200 rounded-lg shadow-lg p-3"
     >
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Calendar</h2>
       <Calendar

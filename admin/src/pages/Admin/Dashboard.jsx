@@ -135,17 +135,17 @@ const Dashboard = () => {
                   </div>
 
                   {item.cancelled ? (
-                    <p className="px-2 py-1 bg-gray-200 rounded-2xl cursor-not-allowed">
+                    <p className="px-2 ml-auto py-1 bg-gray-200 rounded-2xl cursor-not-allowed">
                       Cancelled
                     </p>
                   ) : item.isCompleted ? (
-                    <button className="px-1 py-1 border-green-400 border-2 text-green-400 rounded-2xl cursor-default font-semibold">
+                    <button className="px-1 ml-auto py-1 border-green-400 border-2 text-green-400 rounded-2xl cursor-default font-semibold">
                       Completed
                     </button>
                   ) : (
                     <button
                       onClick={() => cancelAppointments(item._id)}
-                      className="px-4 py-1 bg-red-400 rounded-2xl cursor-pointer hover:bg-red-600 text-white font-semibold"
+                      className="px-4 py-1 ml-auto bg-red-400 rounded-2xl cursor-pointer hover:bg-red-600 text-white font-semibold"
                     >
                       Cancel
                     </button>
@@ -156,7 +156,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="hidden lg:block w-2/4">
+        <div className="hidden lg:block w-[45%]">
           <Calendar />
         </div>
       </div>
