@@ -74,3 +74,37 @@ Following are the key features of this fullstack web application :
 ![Doctor Screenshot](./images/SelectDoctors.png "Doctor Page")
 
 
+## 🌐 Project Setup
+
+To set up and run this project locally:
+
+1. **Clone this Repository**
+    ```bash
+   git clone https://github.com/Shre1100/MediConnect.git
+   cd  MediConnect
+   ```
+2. **Install all the dependencies**
+    - go to each frontend, admin, backend folder and run npm install
+
+3. **Create Environment Variables**
+    -create .env file in backend folder and add the following:
+    ```env
+        MONGO_URI=your_mongodb_connection_string
+        JWT_SECRET=your_jwt_secret
+     ```
+
+     - create .env file in admin and frontend folder and declare the URL for backend
+
+4. **Run the application**
+    - For Backend , go to backend folder and run the following command : 
+        node index.js
+    
+    - For Frontend and Admin , go to frontend folder and run the following command  then do the same for admin folder:
+        npm run dev 
+
+
+## 🌟 Acknowledgements
+
+- Thanks to the developers and contributors of MongoDB, Express.js, React.js and Node.js for their fantastic tools and libraries.
+
+---
