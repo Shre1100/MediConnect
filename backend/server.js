@@ -18,8 +18,8 @@ connectCloudinary();
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   
-  "https://medi-connect-admin-doctor.vercel.app/",         
-  "http://localhost:5174",                         
+  "https://medi-connect-admin-doctor.vercel.app",         
+  "http://localhost:5174"                       
 ];
 
 app.use(express.json());
