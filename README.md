@@ -52,6 +52,17 @@ Following are the key features of this fullstack web application :
 
 ## Some ScreenShots
 
+### Admin Panel
+
+![Admin Dashboard Screenshot](./images/AdminDashboard.png "Admin Dashboard Page")
+
+![Admin All Appointments Screenshot](./images/AdminAllAppointments.png "Admin All Appointments Page")
+
+![Doctor Requests Screenshot](./images/AdminDoctorReques.png "Doctor requests Page")
+
+
+### User Side
+
 ![Home Page Screenshot](./images/HomePageImg.png "Home Page")
 
 ![All Doctors Page Screenshot](./images/DoctorsPage.png " All Doctors Page")
