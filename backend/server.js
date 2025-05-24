@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'dToken', 'aToken' 'Authorization'],
+    allowedHeaders: ['Content-Type', 'dToken', 'aToken', 'Authorization'],
     credentials: true
 }));
 
