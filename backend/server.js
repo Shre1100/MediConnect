@@ -15,10 +15,22 @@ connectDB();
 connectCloudinary();
 
 //middlewares
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "https://your-admin-app-url.vercel.app",         
+  "http://localhost:5174",                         
+];
 
 app.use(express.json());
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS not allowed from this origin: ' + origin), false);
+    }
+  },
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'dToken', 'aToken', 'token', 'Authorization'],
     credentials: true
