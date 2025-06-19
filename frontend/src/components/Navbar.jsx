@@ -38,6 +38,10 @@ const Navbar = () =>{
                 <li className="py-1 text-[1.04rem] rounded-md hover:shadow-xl hover:scale-100 transition-all hover:bg-slate-200 px-2">Contact</li>
                 <hr className="border-none outline-none h-0.5 bg-primary mt-1 m-auto hidden"/>
             </NavLink>
+            <div className="flex items-center cursor-pointer">
+              <a href="https://medi-connect-admin-doctor.vercel.app/" className="px-3 text-[1.04rem] border text-primary border-primary rounded-2xl hover:shadow-xl hover:scale-100 transition-all hover:text-white py-2 hover:bg-primary">Admin Panel</a>
+              <hr className="border-none outline-none h-0.5 bg-primary mt-1 m-auto hidden"/>
+            </div>
           </ul>
           <div className="flex items-center md:mr-8">
             {
@@ -65,14 +69,15 @@ const Navbar = () =>{
           {/* menu for small screens  */}
           <div className={`${menu? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
             <div className="flex  items-center justify-between px-5 py-6">
-              <img className="w-28 ml-[-8%]" src={assets.logo} alt="" />
-              <img className="w-7" onClick={()=>setMenu(false)} src={assets.cross_icon} alt="" />
+              <img className="w-28 ml-[-2%]" src={assets.logo} alt="MediConnect Logo" />
+              <img className="w-7" onClick={()=>setMenu(false)} src={assets.cross_icon} alt="Cancel icon" />
             </div>
             <ul className="flex flex-col items-start gap-2 mt-5 px-8">
               <NavLink onClick={()=>setMenu(!menu)} to={'/'} className={'flex text-base font-semibold  transition-all gap-2'}> <img className="w-5" src={assets.rightArrow} alt="right arrow" /><p className="px-3">Home</p></NavLink>
               <NavLink onClick={()=>setMenu(!menu)} to={'/doctors'} className={'flex text-base  font-semibold transition-all gap-2'}> <img className="w-5" src={assets.rightArrow} alt="right arrow" /> <p className="px-3">Doctors</p> </NavLink>
               <NavLink onClick={()=>setMenu(!menu)} to={'/about'} className={'flex text-base  font-semibold transition-all gap-2'}> <img className="w-5" src={assets.rightArrow} alt="right arrow" /> <p className="px-3">About</p></NavLink>
               <NavLink onClick={()=>setMenu(!menu)} to={'/contact'} className={'flex text-base  font-semibold transition-all gap-2'}> <img className="w-5" src={assets.rightArrow} alt="right arrow" /> <p className="px-3">Contact</p></NavLink>
+              <a href="https://medi-connect-admin-doctor.vercel.app/" className="flex text-base  font-semibold transition-all gap-2"><img className="w-5" src={assets.rightArrow} alt="right arrow" /><span className="px-3">Admin Panel</span></a>
             </ul>
           </div>
           </div> 
